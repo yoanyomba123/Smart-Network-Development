@@ -1,6 +1,14 @@
 # Fin-Social | A Financial Social Networ [![Build Status]
 
-A Social Network For The Common Person Aimed At Augmenting F.
+A Social Network For The Common Person Aimed At Augmenting Financial Literacy.
+
+## What Is Fin-Social
+
+Fin-Social is a social network aimed at educating millenials specifically on topics relating to personal finance, investment methods, trading algorithms, computational trading techniques, stock analysis, real estate investments, bonds, currencies, crypto-currencies, and various other complex financial products.
+
+Fin-Social allows users to comunicate amongst one another, share insights specific to the markets, display personal financial research done specific to some industry or product group, and enhance user domain knowledge with the hope of creating a better educated set of indivuals with respect to the world of finances.
+
+To view the current demo [demo](http://calm-beach-77261.herokuapp.com/)
 
 * [Creating an App](#running-the-app) – How to run the application.
 
