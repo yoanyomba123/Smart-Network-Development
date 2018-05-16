@@ -91,14 +91,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 By default, it also [includes a service worker](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) so that the app loads from local cache on future visits.
 
-## create-react-app Philosophy
-
-* **One Dependency:** There is just one build dependency. It uses Webpack, Babel, ESLint, and other amazing projects, but provides a cohesive curated experience on top of them.
-
-* **No Configuration Required:** You don't need to configure anything. Reasonably good configuration of both development and production builds is handled for you so you can focus on writing code.
-
-* **No Lock-In:** You can “eject” to a custom setup at any time. Run a single command, and all the configuration and build dependencies will be moved directly into your project, so you can pick up right where you left off.
-
 ## What’s Included?
 
 This environment has everything we need to interact with a modern React Application:
@@ -125,4 +117,4 @@ Grateful to the following individuals for their aid throughout the development p
 
 ## License
 
-Create Fin-Social is designed with the hope of being an open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE).
+Fin-Social is designed with the hope of eventually being an open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE).
