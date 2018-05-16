@@ -1,4 +1,4 @@
-# Fin-Social | A Financial Social Networ
+# Fin-Social | A Financial Social Network
 
 A Social Network For The Common Person Aimed At Augmenting Financial Literacy.
 
