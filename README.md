@@ -20,10 +20,6 @@ npm run app
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
 When you’re ready to deploy to production, create a minified bundle with `npm run build`.
 
-<p align='center'>
-<img src='https://cdn.rawgit.com/facebook/create-react-app/27b42ac/screencast.svg' width='600' alt='npm start'>
-</p>
-
 ### Get Started Immediately
 
 You **don’t** need to install or configure tools like Webpack or Babel.<br>
@@ -79,10 +75,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will automatically reload if you make changes to the code.<br>
 You will see the build errors and lint warnings in the console.
-
-<p align='center'>
-<img src='https://cdn.rawgit.com/marionebl/create-react-app/9f62826/screencast-error.svg' width='600' alt='Build errors'>
-</p>
 
 ### `npm test` or `yarn test`
 
