@@ -15,6 +15,8 @@ To view the current prototype [click here](http://calm-beach-77261.herokuapp.com
 Fin-Social works on macOS, Windows, and Linux.<br>
 If something doesn’t work, please [file an issue](https://github.com/yoanyomba123/Smart-Network-Developmet/issues/new).
 
+Note: This application is built with the MERN Stack
+
 ## Quick Overview
 
 ```sh
