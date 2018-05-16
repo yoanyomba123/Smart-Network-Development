@@ -10,7 +10,7 @@ Fin-Social allows users to comunicate amongst one another, share insights specif
 
 To view the current prototype [click here](http://calm-beach-77261.herokuapp.com/)
 
-* [Creating an App](#running-the-app) – How to run the application.
+* [Runnin The App on One's Local Developemnt Server](#running-the-app) – How to run the application.
 
 Fin-Social works on macOS, Windows, and Linux.<br>
 If something doesn’t work, please [file an issue](https://github.com/yoanyomba123/Smart-Network-Developmet/issues/new).
