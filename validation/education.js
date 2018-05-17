@@ -27,6 +27,6 @@ module.exports = function validateEducationInput(data) {
 
   return {
     errors,
-    isValid: errors
+    isValid: isEmpty(errors)
   };
 };

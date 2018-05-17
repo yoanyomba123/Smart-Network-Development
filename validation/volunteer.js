@@ -22,6 +22,6 @@ module.exports = function validateVolunteerInput(data) {
 
   return {
     errors,
-    isValid: errors
+    isValid: isEmpty(errors)
   };
 };

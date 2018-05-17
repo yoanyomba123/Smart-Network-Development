@@ -22,6 +22,6 @@ module.exports = function validateProjectInput(data) {
 
   return {
     errors,
-    isValid: errors
+    isValid: isEmpty(errors)
   };
 };

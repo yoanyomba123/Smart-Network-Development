@@ -1,0 +1,31 @@
+ <li className="nav-item">
+                <Link className="nav-link" to="/Markets">
+                  Markets
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Econonmy">
+                  Economy
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Derivatives">
+                  Derivative Securities
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Opinions">
+                  Opinions
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/FundFilings">
+                  Fund Filings
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Crypto">
+                  Cryptocurrencies
+                </Link>
+              </li>
+              <Link />

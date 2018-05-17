@@ -15,6 +15,6 @@ module.exports = function validatePostInput(data) {
   }
   return {
     errors,
-    isValid: errors
+    isValid: isEmpty(errors)
   };
 };

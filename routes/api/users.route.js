@@ -28,8 +28,10 @@ router.post("/register", (request, response) => {
   // pull out errors by destructuring
   var { errors, isValid } = validateRegisterInput(request.body);
 
+  console.log("register request sent");
   // error condition check
   if (!isValid) {
+    console.log("400 status response sent");
     return response.status(400).json(errors);
   }
   User.findOne({ email: request.body.email }).then(user => {
