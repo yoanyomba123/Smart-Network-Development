@@ -119,12 +119,9 @@ router.post("/login", (request, response) => {
             { expiresIn: 3600 * 24 },
             (error, token) => {
               console.log("Bearer " + token);
-              response.json({ success: true, token: "Bearer " + token });
+              return response.json({ success: true, token: "Bearer " + token });
             }
           );
-          return response.json({
-            msg: "Sucess"
-          });
         } else {
           console.log("Not Matched");
           errors.password = "Password Incorrect";

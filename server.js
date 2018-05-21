@@ -10,7 +10,7 @@ var passport = require("passport");
 Users = require("./routes/api/users.route");
 Profile = require("./routes/api/profile.route");
 Posts = require("./routes/api/post.route");
-
+RSS = require("./routes/api/rssfeed.route");
 var app = express();
 
 // body parser middleware
@@ -34,6 +34,7 @@ require("./config/passport")(passport);
 app.use("/api/users", Users);
 app.use("/api/posts", Posts);
 app.use("/api/profile", Profile);
+app.use("/api/rss", RSS);
 
 var PORT = process.env.PORT || 5000;
 

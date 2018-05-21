@@ -1,31 +1,107 @@
- <li className="nav-item">
-                <Link className="nav-link" to="/Markets">
-                  Markets
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Econonmy">
-                  Economy
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Derivatives">
-                  Derivative Securities
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Opinions">
-                  Opinions
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/FundFilings">
-                  Fund Filings
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Crypto">
-                  Cryptocurrencies
-                </Link>
-              </li>
-              <Link />
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import classnames from "classnames";
+import { connect } from "react-redux";
+import { loadFeed } from "../../actions/auth.action";
+class Markets extends Component {
+  constructor() {
+    super();
+    this.state = {
+      feeds: {},
+      errors: {}
+    };
+
+    // binding this to onchange event
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    // perform load User Market Feed
+    this.props.loadFeed({}, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+  onSubmit(event) {
+    event.preventDefault();
+
+    // perform load User Market Feed
+    this.props.loadFeed({}, this.props.history);
+  }
+
+  render() {
+    // destructuring
+    var { errors, feeds } = this.state;
+
+    var data = feeds.feeds.map(feed => {
+         feed.items.map(item => {
+            return(
+                <div class="col-md-4">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary"></strong>
+                        <h3 class="mb-0">
+                            <a class="text-dark">
+                                {item.title}
+                            </a>
+                        </h3>
+                        <div class="mb-1 text-muted">
+                            {item.pubdate}
+                        </div>
+                        <p class="card-text mb-auto">
+                            {item.content}
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            );   
+        });
+    });
+        
+    return (<div> 
+            {data}
+        </div>);
+};
+
+// mapping properties to prop types
+Markets.propTypes = {
+  loadFeed: PropTypes.func.isRequired,
+  feeds: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+var mapStateToProps = state => ({
+  // comes from root reducer called index
+  feeds: state.feeds,
+  errors: state.errors
+});
+export default connect(mapStateToProps, { loadFeed })(withRouter(Markets));
+
+
+
+<div className="col-md-4">
+              <div className="card flex-md-row mb-4 box-shadow h-md-250">
+                <div className="card-body d-flex flex-column align-items-start">
+                  <strong className="d-inline-block mb-2 text-primary" />
+                  <h3 className="mb-0">
+                    <a className="text-dark">{data[item][post].title}</a>
+                  </h3>
+                  <div className="mb-1 text-muted">
+                    {data[item][post].pubdate}
+                  </div>
+                  <p className="card-text mb-auto">
+                    {data[item][post].content}
+                  </p>
+                </div>
+              </div>
+            </div>

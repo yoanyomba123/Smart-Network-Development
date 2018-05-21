@@ -22,11 +22,11 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (!validator.isEmail(data.email)) {
-    errors.name = "Email is Invalid";
+    errors.email = "Email is Invalid";
   }
 
   if (validator.isEmpty(data.password)) {
-    errors.name = "Password Field is Required";
+    errors.password = "Password Field is Required";
   }
 
   if (!validator.isLength(data.password, { min: 8, max: 30 })) {
