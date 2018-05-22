@@ -120,7 +120,7 @@ class Navbar extends Component {
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li className="nav-item">
-              <Link className="nav-link" to="/Econonmy">
+              <Link className="nav-link" to="/Economy">
                 Economy Outlook
               </Link>
             </li>
@@ -160,6 +160,12 @@ class Navbar extends Component {
             <li className="dropdown-item">
               <Link className="nav-link" to="/CurrencyDerivatives">
                 Currency Derivatives
+              </Link>
+            </li>
+            <div className="dropdown-divider" />
+            <li className="dropdown-item">
+              <Link className="nav-link" to="/EquityDerivatives">
+                Equity Derivatives
               </Link>
             </li>
             <div className="dropdown-divider" />

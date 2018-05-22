@@ -47,42 +47,17 @@ class Markets extends Component {
     var { data } = this.state.feeds;
     var count = 0;
     let feedItems = [];
-    let temp = [];
+    let curr_infoset = [];
 
     let elements = [];
     if (data !== null || data !== undefined) {
       for (var item in data) {
         data[item].map((value, index) => {
           var info = data[item];
-          if (index % 2 && index > 0) {
-            temp.push([info[index], info[index - 1]]);
-          }
           if (count < 20) {
-            feedItems.push(
-              <div className="container">
-                <div className="card flex-md-row mb-4 box-shadow h-md-250">
-                  <div className="card-body d-flex flex-column align-items-start">
-                    <strong className="d-inline-block mb-2 text-primary" />
-                    <h3 className="mb-0">
-                      <a className="text-dark">{value.title}</a>
-                      <hr />
-                    </h3>
-                    <h4 className="mb-1 text-muted">{value.pubdate}</h4>
-                    <p className="card-text mb-auto">{value.content}</p>
-                    <br />
-                    <p className="lead mb-0">
-                      <a
-                        className="text-muted font-weight-bold"
-                        href={value.link}
-                      >
-                        {" "}
-                        Continue reading...{" "}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
+            if (index % 2 && index > 0) {
+              curr_infoset.push([info[index], info[index - 1]]);
+            }
           }
           count += 1;
         });
@@ -95,8 +70,7 @@ class Markets extends Component {
           <div>Please wait, loading…</div>
         ) : (
           <div>
-            {temp.map((item, index) => {
-              console.log(item[0]);
+            {curr_infoset.map((item, index) => {
               return (
                 <div className="row">
                   <div className="col-sm-6">
@@ -156,31 +130,6 @@ class Markets extends Component {
         )}
       </div>
     );
-    /*
-    if (feeds) {
-      var data = feeds.map(feed => {
-        feed.items.map(item => {
-          <div className="col-md-4">
-            <div className="card flex-md-row mb-4 box-shadow h-md-250">
-              <div className="card-body d-flex flex-column align-items-start">
-                <strong className="d-inline-block mb-2 text-primary" />
-                <h3 className="mb-0">
-                  <a className="text-dark">{item.title}</a>
-                </h3>
-                <div className="mb-1 text-muted">{item.pubdate}</div>
-                <p className="card-text mb-auto">{item.content}</p>
-              </div>
-            </div>
-          </div>;
-        });
-      });
-    } else {
-      data = "Empty";
-    }
-
-
-    return <div>{data}</div>;
-    */
   }
 }
 // mapping properties to prop types

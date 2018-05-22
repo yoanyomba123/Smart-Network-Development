@@ -64,18 +64,143 @@ export const logoutUser = () => dispatch => {
 
 // load feed
 export const loadFeed = () => dispatch => {
-  axios
-    .get("/api/rss/markets")
-    .then(response => {
-      dispatch({
-        type: LOAD_FEED,
-        payload: response.data
+  console.log(window.location.href);
+  var curr_url = window.location.href;
+
+  if (curr_url.includes("Markets")) {
+    axios
+      .get("/api/rss/markets")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: GET_ERRORS,
-        errors: error.response.data
+  } else if (curr_url.includes("Economy")) {
+    axios
+      .get("/api/rss/economy")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
       });
-    });
+  } else if (curr_url.includes("Opinions")) {
+    axios
+      .get("/api/rss/opinions")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  } else if (curr_url.includes("StructuredProducts")) {
+    axios
+      .get("/api/rss/structured-derivatives")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  } else if (curr_url.includes("CurrencyDerivatives")) {
+    axios
+      .get("/api/rss/currency-derivatives")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  } else if (curr_url.includes("InterestRateDerivative")) {
+    axios
+      .get("/api/rss/interest-rate-derivatives")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  } else if (curr_url.includes("CreditDerivatives")) {
+    axios
+      .get("/api/rss/credit-derivatives")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  } else if (curr_url.includes("CommodityDerivatives")) {
+    axios
+      .get("/api/rss/commodity-derivatives")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  } else if (curr_url.includes("EquityDerivatives")) {
+    axios
+      .get("/api/rss/equity-derivatives")
+      .then(response => {
+        dispatch({
+          type: LOAD_FEED,
+          payload: response.data
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_ERRORS,
+          errors: error.response.data
+        });
+      });
+  }
 };

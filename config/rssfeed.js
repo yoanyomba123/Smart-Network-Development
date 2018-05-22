@@ -15,12 +15,22 @@ module.exports = {
 
   Econonmics: ["https://www.cnbc.com/id/20910258/device/rss/rss.html"],
 
-  Derivatives: [
-    "http://www.risk.net/feeds/rss/category/derivatives/structured-products",
-    "http://www.risk.net/feeds/rss/category/derivatives/currency-derivatives",
-    "http://www.risk.net/feeds/rss/category/derivatives/interest-rate-derivatives",
-    "http://www.risk.net/feeds/rss/category/derivatives/credit-derivatives",
-    "http://www.risk.net/feeds/rss/category/derivatives/equity-derivatives",
+  Structured_Products: [
+    "http://www.risk.net/feeds/rss/category/derivatives/structured-products"
+  ],
+  Currency_Derivatives: [
+    "http://www.risk.net/feeds/rss/category/derivatives/currency-derivatives"
+  ],
+  Interest_Rate_Derivatives: [
+    "http://www.risk.net/feeds/rss/category/derivatives/interest-rate-derivatives"
+  ],
+  Credit_Derivatives: [
+    "http://www.risk.net/feeds/rss/category/derivatives/credit-derivatives"
+  ],
+  Equity_Derivatives: [
+    "http://www.risk.net/feeds/rss/category/derivatives/equity-derivatives"
+  ],
+  Commodity_Derivatives: [
     "http://www.risk.net/feeds/rss/category/derivatives/commodity-derivatives"
   ],
   Social: [
