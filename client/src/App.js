@@ -8,11 +8,17 @@ import RssFeeds from "./components/Information-Feeds/markets";
 // provides app with the store
 import store from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utilities/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/auth.action";
 import "./App.css";
+import Dashboard from "./components/Profile/Dashboard";
+import CreateProfile from "./components/Create-Profile/CreateProfile";
+
+import { clearCurrentProfile } from "./actions/profile.action";
+
+import PrivateRoute from "./components/Common/privateRoute";
 //check for token presence
 if (localStorage.jwtToken) {
   // set Auth token to header auth
@@ -28,6 +34,7 @@ if (localStorage.jwtToken) {
     // logout User
     store.dispatch(logoutUser());
     // clear our profile
+    store.dispatch(clearCurrentProfile());
     // redirect to login
     window.location.href = "/login";
   }
@@ -41,10 +48,20 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <div className="bg-light">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/Markets" component={RssFeeds} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
+              </Switch>
               <Route exact path="/Economy" component={RssFeeds} />
               <Route exact path="/StructuredProducts" component={RssFeeds} />
               <Route exact path="/CurrencyDerivatives" component={RssFeeds} />

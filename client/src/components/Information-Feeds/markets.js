@@ -54,11 +54,11 @@ class Markets extends Component {
       for (var item in data) {
         data[item].map((value, index) => {
           var info = data[item];
-          if (count < 20) {
-            if (index % 2 && index > 0) {
-              curr_infoset.push([info[index], info[index - 1]]);
-            }
+          //if (count < 20) {
+          if (index % 2 && index > 0) {
+            curr_infoset.push([info[index], info[index - 1]]);
           }
+          //}
           count += 1;
         });
       }
@@ -70,6 +70,9 @@ class Markets extends Component {
           <div>Please wait, loading…</div>
         ) : (
           <div>
+            <br />
+            <br />
+
             {curr_infoset.map((item, index) => {
               return (
                 <div className="row">
@@ -82,7 +85,8 @@ class Markets extends Component {
                             <a className="text-dark">{item[0].title}</a>
                             <hr />
                           </h3>
-                          <h4 className="mb-1 text-muted">{item[0].pubdate}</h4>
+                          <h6 className="mb-1 text-muted">{item[0].pubDate}</h6>
+                          <br />
                           <p className="card-text mb-auto">{item[0].content}</p>
                           <br />
                           <p className="lead mb-0">
@@ -91,7 +95,7 @@ class Markets extends Component {
                               href={item[0].link}
                             >
                               {" "}
-                              Continue reading...{" "}
+                              <p>Continue reading... </p>
                             </a>
                           </p>
                         </div>
@@ -107,7 +111,9 @@ class Markets extends Component {
                             <a className="text-dark">{item[1].title}</a>
                             <hr />
                           </h3>
-                          <h4 className="mb-1 text-muted">{item[1].pubdate}</h4>
+                          <h6 className="mb-1 text-muted">{item[1].pubDate}</h6>
+                          <br />
+
                           <p className="card-text mb-auto">{item[1].content}</p>
                           <br />
                           <p className="lead mb-0">
@@ -116,7 +122,7 @@ class Markets extends Component {
                               href={item[1].link}
                             >
                               {" "}
-                              Continue reading...{" "}
+                              <p>Continue reading... </p>
                             </a>
                           </p>
                         </div>
