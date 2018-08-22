@@ -267,16 +267,16 @@ router.post(
       response.status(400).json(errors);
     }
     Profile.findOne({ userid: request.user.id }).then(profile => {
-      var newvolunter = {};
-      newvolunter.school = request.body.school;
-      newvolunter.degree = request.body.degree;
-      newvolunter.from = request.body.from;
-      newvolunter.to = request.body.to;
-      newvolunter.current = request.body.current;
-      newvolunter.major = request.body.major;
-      console.log(newvolunter);
+      var neweducation = {};
+      neweducation.school = request.body.school;
+      neweducation.degree = request.body.degree;
+      neweducation.from = request.body.from;
+      neweducation.to = request.body.to;
+      neweducation.current = request.body.current;
+      neweducation.major = request.body.major;
+      console.log(neweducation);
       // add to experience array
-      profile.education.unshift(newvolunter);
+      profile.education.unshift(neweducation);
       console.log(profile);
       if (profile) {
         profile.save().then(user => {
