@@ -105,3 +105,10 @@ export default connect(mapStateToProps, { loadFeed })(withRouter(Markets));
                 </div>
               </div>
             </div>
+
+
+
+
+
+
+killall -9 node
