@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import TextFieldGroup from "../Common/TextFieldGroup";
 import TextAreaFieldGroup from "../Common/TextAreaFieldGroup";
 import InputGroup from "../Common/InputGroup";
 import SelectListGroup from "../Common/SelectListGroup";
+import { createProfile } from "../../actions/profile.action";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -31,8 +33,32 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  // process new propertis
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      skills: this.state.skills,
+      githubusername: this.state.githubusername,
+      bio: this.state.bio,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedIn,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram
+    };
+
+    this.props.createProfile(profileData, this.props.history);
     console.log("submit");
   }
 
@@ -163,15 +189,15 @@ class CreateProfile extends Component {
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Profile Handle"
-                  name="Handle"
+                  name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
                   info="Create a unique handle for your profile url. Handle can stem from your full name, company name, or nickname"
                 />
                 <SelectListGroup
-                  placeholder="Job Status"
-                  name="Job Status"
+                  placeholder="Status"
+                  name="status"
                   value={this.state.status}
                   onChange={this.onChange}
                   error={errors.status}
@@ -180,7 +206,7 @@ class CreateProfile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Company"
-                  name="Company"
+                  name="company"
                   value={this.state.company}
                   onChange={this.onChange}
                   error={errors.company}
@@ -188,15 +214,15 @@ class CreateProfile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Location"
-                  name="Location"
+                  name="location"
                   value={this.state.location}
                   onChange={this.onChange}
                   error={errors.location}
                   info="Please Provide A City or a combined set of city and state (eg. New York, NY)"
                 />
                 <TextFieldGroup
-                  placeholder="Skills"
-                  name="Skills"
+                  placeholder="* Skills"
+                  name="skills"
                   value={this.state.skills}
                   onChange={this.onChange}
                   error={errors.skills}
@@ -212,7 +238,7 @@ class CreateProfile extends Component {
                 />
                 <TextFieldGroup
                   placeholder="Website"
-                  name="Website"
+                  name="website"
                   value={this.state.website}
                   onChange={this.onChange}
                   error={errors.website}
@@ -220,7 +246,7 @@ class CreateProfile extends Component {
                 />
                 <TextAreaFieldGroup
                   placeholder="Bio"
-                  name="Bio"
+                  name="bio"
                   value={this.state.bio}
                   onChange={this.onChange}
                   error={errors.bio}
@@ -228,6 +254,7 @@ class CreateProfile extends Component {
                 />
                 <div className="mb-3">
                   <button
+                    type="button"
                     onClick={() => {
                       this.setState(prevState => ({
                         displaySocialInputs: !prevState.displaySocialInputs
@@ -264,4 +291,7 @@ CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile));

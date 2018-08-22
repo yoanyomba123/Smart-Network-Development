@@ -1,7 +1,6 @@
 import { GET_ERRORS } from "./types";
 import { SET_CURRENT_USER } from "./types";
 import { LOAD_FEED } from "./types";
-
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../utilities/setAuthToken";
