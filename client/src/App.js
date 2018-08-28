@@ -15,10 +15,18 @@ import { setCurrentUser, logoutUser } from "./actions/auth.action";
 import "./App.css";
 import Dashboard from "./components/Profile/Dashboard";
 import CreateProfile from "./components/Create-Profile/CreateProfile";
-
+import EditProfile from "./components/Edit-Profile/EditProfile";
+import AddExperience from "./components/Add-Credentials/AddExperience";
+import AddEducation from "./components/Add-Credentials/AddEducation";
+import AddProjects from "./components/Add-Credentials/AddProjects";
+import AddHonors from "./components/Add-Credentials/AddHonors";
+import AddVolunteer from "./components/Add-Credentials/AddVolunteer";
+import Profiles from "./components/Profiles/Profiles";
 import { clearCurrentProfile } from "./actions/profile.action";
-
 import PrivateRoute from "./components/Common/privateRoute";
+import Profile from "./components/Profiles-Profile/Profile";
+import NotFound from "./components/NotFound/NotFound";
+
 //check for token presence
 if (localStorage.jwtToken) {
   // set Auth token to header auth
@@ -51,6 +59,8 @@ class App extends Component {
             <div className="bg-light">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/Markets" component={RssFeeds} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -60,6 +70,44 @@ class App extends Component {
                   exact
                   path="/create-profile"
                   component={CreateProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-experience"
+                  component={AddExperience}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={AddEducation}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/add-honors" component={AddHonors} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-projects"
+                  component={AddProjects}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-volunteer"
+                  component={AddVolunteer}
                 />
               </Switch>
               <Route exact path="/Economy" component={RssFeeds} />
@@ -74,6 +122,7 @@ class App extends Component {
               <Route exact path="/CreditDerivatives" component={RssFeeds} />
               <Route exact path="/CommodityDerivatives" component={RssFeeds} />
               <Route exact path="/Opinions" component={RssFeeds} />
+              <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
           </div>

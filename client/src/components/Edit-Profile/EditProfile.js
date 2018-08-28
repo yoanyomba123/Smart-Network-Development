@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../Common/TextFieldGroup";
 import TextAreaFieldGroup from "../Common/TextAreaFieldGroup";
 import InputGroup from "../Common/InputGroup";
 import SelectListGroup from "../Common/SelectListGroup";
-import { createProfile } from "../../actions/profile.action";
+import { createProfile, getCurrentProfile } from "../../actions/profile.action";
+import { isEmpty } from "../../utilities/validation/isEmpty";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -36,10 +37,74 @@ class CreateProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   // process new propertis
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+
+      // change skills array into comment separeted value
+      const skillsCSV = profile.skills.join(",");
+
+      const certificationsCSV = profile.certifications.join(",");
+
+      const portfolioCSV = profile.portfolio.join(",");
+
+      const interestsCSV = profile.interests.join(",");
+
+      // if profile field doesnt exist, make empty string
+      profile.company = !isEmpty(profile.company) ? profile.company : "";
+
+      profile.website = !isEmpty(profile.website) ? profile.website : "";
+      profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.githubusername = !isEmpty(profile.githubusername)
+        ? profile.githubusername
+        : "";
+
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+
+      profile.social.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : {};
+      profile.social.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.linkedin
+        : "";
+      profile.social.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : "";
+      profile.social.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : "";
+      profile.social.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : "";
+
+      // set component fields state
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        skills: skillsCSV,
+        portfolio: portfolioCSV,
+        interests: interestsCSV,
+        certifications: certificationsCSV,
+        githubusername: profile.githubusername,
+        bio: profile.bio,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        linkedin: profile.linkedIn,
+        youtube: profile.youtube,
+        instagram: profile.instagram
+      });
     }
   }
 
@@ -52,9 +117,6 @@ class CreateProfile extends Component {
       location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
-      portfolio: this.state.portfolio,
-      interests: this.state.interests,
-      certifications: this.state.certifications,
       githubusername: this.state.githubusername,
       bio: this.state.bio,
       twitter: this.state.twitter,
@@ -65,7 +127,6 @@ class CreateProfile extends Component {
     };
 
     this.props.createProfile(profileData, this.props.history);
-    console.log("submit");
   }
 
   onChange(e) {
@@ -185,12 +246,11 @@ class CreateProfile extends Component {
       <div className="create-profile">
         <div className="container">
           <div className="row">
-            <div classname="col-md-8 m-auto">
-              <h1 className="display-4 text-center"> Create Your Profile </h1>
-              <p className="lead text-center">
-                {" "}
-                Let's get some information to make a profile that shines
-              </p>
+            <div className="col-md-8 m-auto">
+              <h1 className="display-4 text-center"> Edit Profile </h1>
+              <Link to="/dashboard" className="btn btn-light">
+                Go Back
+              </Link>
               <small className="d-block pb-3"> * = required fields </small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -318,10 +378,12 @@ const mapStateToProps = state => ({
 });
 
 CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 export default connect(
   mapStateToProps,
-  { createProfile }
+  { createProfile, getCurrentProfile }
 )(withRouter(CreateProfile));

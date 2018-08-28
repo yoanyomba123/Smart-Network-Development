@@ -14,7 +14,7 @@ class Register extends Component {
       name: "",
       email: "",
       password: "",
-      passwordcong: "",
+      passwordconf: "",
       errors: {}
     };
 
@@ -93,7 +93,7 @@ class Register extends Component {
                 <TextFieldGroup
                   placeholder="Confirm Password"
                   name="passwordconf"
-                  type="email"
+                  type="passwordconf"
                   value={this.state.passwordconf}
                   onChange={this.onChange}
                   error={errors.passwordconf}
@@ -119,4 +119,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

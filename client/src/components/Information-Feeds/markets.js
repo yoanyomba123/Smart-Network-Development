@@ -76,12 +76,12 @@ class Markets extends Component {
             {curr_infoset.map((item, index) => {
               return (
                 <div className="row">
-                  <div className="col-sm-6">
+                  <div className="col-sm-6 col-md-6">
                     <div className="container">
                       <div className="card flex-md-row mb-4 box-shadow h-md-250">
                         <div className="card-body d-flex flex-column align-items-start">
                           <strong className="d-inline-block mb-2 text-primary" />
-                          <h3 className="mb-0">
+                          <h3 className="mb-0 text-center">
                             <a className="text-dark">{item[0].title}</a>
                             <hr />
                           </h3>
@@ -102,12 +102,12 @@ class Markets extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-sm-6 col-md-6">
                     <div className="container">
                       <div className="card flex-md-row mb-4 box-shadow h-md-250">
                         <div className="card-body d-flex flex-column align-items-start">
                           <strong className="d-inline-block mb-2 text-primary" />
-                          <h3 className="mb-0">
+                          <h3 className="mb-0 text-center">
                             <a className="text-dark">{item[1].title}</a>
                             <hr />
                           </h3>
@@ -149,4 +149,7 @@ const mapStateToProps = state => ({
   feeds: state.feeds,
   errors: state.errors
 });
-export default connect(mapStateToProps, { loadFeed })(withRouter(Markets));
+export default connect(
+  mapStateToProps,
+  { loadFeed }
+)(withRouter(Markets));

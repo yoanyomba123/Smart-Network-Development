@@ -37,13 +37,13 @@ router.get(
     var errors = {};
     // logged in user
     Profile.findOne({ userid: request.user.id })
-      .populate("user", [("name", "avatar")])
+      .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
           errors.noprofile = "There is no profile for this User";
           return response.status(404).json(errors);
         }
-        console.log(profile);
+        console.log("USER PROFILES" + profile + "\n\n\n\n\n\n\n");
         response.json(profile);
       })
       .catch(error => response.status(404).json(error));
@@ -149,7 +149,7 @@ router.post(
     if (request.body.company) profileFields.company = request.body.company;
     if (request.body.website) profileFields.website = request.body.website;
     if (request.body.location) profileFields.location = request.body.location;
-    if (request.body.bio) profileFieldybody.bio = request.body.bio;
+    if (request.body.bio) profileFields.bio = request.body.bio;
     if (request.body.status) profileFields.status = request.body.status;
     if (request.body.githubusername)
       profileFields.githubusername = request.body.githubusername;
@@ -162,6 +162,10 @@ router.post(
     }
     if (typeof request.body.portfolio != "undefined") {
       profileFields.portfolio = request.body.portfolio.split(",");
+    }
+
+    if (typeof request.body.certifications != "undefined") {
+      profileFields.certifications = request.body.certifications.split(",");
     }
 
     // social
@@ -177,15 +181,18 @@ router.post(
     if (request.body.instagram)
       profileFields.social.instagram = request.body.instagram;
 
-    console.log(profileFields);
-    console.log(request.user.id);
+    console.log(
+      "this is profile to be saved" +
+        profileFields.githubusername +
+        "\n\n\n\n\n"
+    );
     Profile.findOne({ userid: request.user.id }).then(profile => {
       if (profile) {
-        console.log(profile);
         // updaete profile
         Profile.findOneAndUpdate(
           { userid: request.user.id },
           { $set: profileFields },
+          { returnOriginal: false },
           { new: true }
         ).then(profile => {
           console.log(profile);
@@ -198,7 +205,6 @@ router.post(
         Profile.findOne({ handle: profileFields.handle }).then(profile => {
           if (profile) {
             errors.handle = "That Handle Already exitsts";
-            console.log(errors);
             return response.status(400).json(errors);
           } else {
             // save profile
@@ -267,6 +273,9 @@ router.post(
       response.status(400).json(errors);
     }
     Profile.findOne({ userid: request.user.id }).then(profile => {
+      console.log("THIS IS THE REQUEST" + request.body);
+      console.log("THIS IS THE PROFILE" + profile);
+
       var neweducation = {};
       neweducation.school = request.body.school;
       neweducation.degree = request.body.degree;
@@ -274,7 +283,7 @@ router.post(
       neweducation.to = request.body.to;
       neweducation.current = request.body.current;
       neweducation.major = request.body.major;
-      console.log(neweducation);
+      console.log("THIS IS THE NEW EDUCATION" + neweducation);
       // add to experience array
       profile.education.unshift(neweducation);
       console.log(profile);
@@ -404,9 +413,8 @@ router.delete(
     Profile.findOne({ userid: request.user.id })
       .then(profile => {
         var removeindex = profile.experience
-          .map(item => item.id)
+          .map(item => item._id)
           .indexOf(request.params.experience_id);
-
         //splice out of array
         profile.experience.splice(removeindex);
         profile.save().then(profile => response.json(profile));
@@ -420,7 +428,7 @@ router.delete(
 // @desc   Delete a project
 // @access Private
 router.delete(
-  ".projects/:projects_id",
+  "/projects/:projects_id",
   passport.authenticate("jwt", { session: false }),
   (request, response) => {
     Profile.findOne({ userid: request.user.id })
@@ -511,9 +519,8 @@ router.delete(
   "/profile",
   passport.authenticate("jwt", { session: false }),
   (request, response) => {
-    console.log("HERER");
-    Profile.findOneAndRemove({ userid: request.user.id }).then(() => {
-      User.findOneAndRemove({ id: request.user.id }).then(() =>
+    User.findByIdAndRemove(request.user.id).then(user => {
+      Profile.findOneAndRemove({ userid: request.user._id }).then(() =>
         response.json({ success: true })
       );
     });
